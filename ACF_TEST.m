@@ -1,5 +1,5 @@
 disp('ACF ¿¬»ê½Ä')
-whos
+clear all
 
 %% dtoa = xlsread( 'acf_data.xlsx', 'B:B' );
 toa = xlsread( 'acf_data.xlsx', 'A:A' );
