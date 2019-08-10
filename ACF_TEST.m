@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-23232323
-=======
-test...
->>>>>>> db4dade51b23d61cbdae53d832d9bb54b06344f9
+hhhh
 
 disp('ACF ¿¬»ê½Ä')
 clear all
