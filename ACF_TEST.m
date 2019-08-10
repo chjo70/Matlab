@@ -1,5 +1,7 @@
 hhhh
-dasdasdasdas
+
+dasdadasdas
+>>>>>>> .theirs
 121212121
 
 
