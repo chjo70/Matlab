@@ -1,4 +1,6 @@
 hhhh
+121212121
+
 
 disp('ACF ¿¬»ê½Ä')
 clear all
