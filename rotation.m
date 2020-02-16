@@ -37,24 +37,63 @@ line([0,0], [0,0], 2*zl, 'LineWidth', 3, 'Color', 'b');
 
 mArrow3([0 0 0],X, 'color', 'red');
 
-for p=-pi/2 : pi/2 : pi/2
-    for y=0 : pi/16 : pi
-      y
-      p
+p = pi/4;
+% pitch
+R_P = [ cos(-p) 0 sin(-p) ; 0 1 0 ; -sin(-p) 0 cos(-p) ];
+
+Y = R_P * X;
+h = mArrow3([0 0 0],Y);
+
+X = [ 1; 0; 0 ];
+for y=0 : pi/16 : 2*pi
+  % roll
+  %R_R = [ 1 0 0 ; 0 cos(r) -sin(r) ; 0 sin(r) cos(r) ];
+
+  % yaw
+  R_Y = [ cos(y) -sin(y) 0 ; sin(y) cos(y) 0 ; 0 0 1 ];
+
+  % pitch
+  R_P = [ cos(-p) 0 sin(-p) ; 0 1 0 ; -sin(-p) 0 cos(-p) ];
+  
+  fprintf( '\n방위각(YAW)=%.1f, 고각(PITCH)=%.1f' , y * 180 / pi, p * 180/pi )
+
+  %Y = R_R * R_P * R_Y * X;
+  Y = R_P * R_Y * X;
+  h = mArrow3([0 0 0],Y);
+  pause(0.5)
+  delete(h);
+end
+
+
+%for p=-pi/2 : pi/2 : pi/2
+%    for y=0 : pi/16 : pi
       % roll
-      R_R = [ 1 0 0 ; 0 cos(r) -sin(r) ; 0 sin(r) cos(r) ];
+      %R_R = [ 1 0 0 ; 0 cos(r) -sin(r) ; 0 sin(r) cos(r) ];
 
       % yaw
-      R_Y = [ cos(y) -sin(y) 0 ; sin(y) cos(y) 0 ; 0 0 1 ];
+%      R_Y = [ cos(y) -sin(y) 0 ; sin(y) cos(y) 0 ; 0 0 1 ];
 
       % pitch
-      R_P = [ cos(p) 0 sin(p) ; 0 1 0 ; -sin(p) 0 cos(p) ];
+      %R_P = [ cos(p) 0 sin(p) ; 0 1 0 ; -sin(p) 0 cos(p) ];
 
-      Y = R_R * R_P * R_Y * X;
-      h = mArrow3([0 0 0],Y);
-      pause(0.5)
-      delete(h);
-    end
-end  
+      %Y = R_R * R_P * R_Y * X;
+%      Y = R_Y * X;
+%      h = mArrow3([0 0 0],Y);
+%      pause(0.5)
+%      delete(h);
+%    end
+    
+ %   X = Y;
+%    for p=0 : pi/16 : pi/2
+      % pitch
+%      R_P = [ cos(p) 0 sin(p) ; 0 1 0 ; -sin(p) 0 cos(p) ];
+
+%      Y = R_P * X;
+%      h = mArrow3([0 0 0],Y);
+%      pause(0.5)
+%      delete(h);
+%    end    
+
+%end  
 
 %h = mArrow3([0 0 0],[0 0 1], 'facealpha', 0.5, 'color', 'red', 'stemWidth', 0.02);
