@@ -43,7 +43,7 @@ r = 0;
 p1 = -20 * pi / 180;
 pr = 20 * pi / 180;
 row = 1;
-for y=0 : pi/4 : pi
+for y=0 : pi/180 : pi
     fprintf( '\n---------------------------------------------' )
     fprintf( '\n방위각(YAW)=%.1f도, 고각(PITCH)=%.1f도' , y * 180 / pi, p1 * 180/pi )
     
@@ -73,7 +73,7 @@ for y=0 : pi/4 : pi
 end    
 
 % -180 도에서 0도 변경시 방위각/피치 값
-for y=-pi : pi/4 : 0
+for y=-pi : pi/180 : 0
     fprintf( '\n---------------------------------------------' )
     fprintf( '\n방위각(YAW)=%.1f도, 고각(PITCH)=%.1f도' , y * 180 / pi, p1 * 180/pi )
     
@@ -103,7 +103,7 @@ for y=-pi : pi/4 : 0
 end    
 
 filename = 'd:\testdata.xlsx';
-%xlswrite(filename,A)
+xlswrite(filename,A)
 
 fprintf( '\n\n' )
 
