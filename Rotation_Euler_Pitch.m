@@ -49,7 +49,7 @@ row = 1;
 
 %fRadarPitch = deg2rad( 10 );
 X = [ 1; 0; 0 ];
-for y=0 : pi/16 : pi
+for y=0 : pi/16 : pi*2
     fprintf( '\n---------------------------------------------' )
     fprintf( '\n방위각(YAW)=%.1f도, 고각(PITCH)=%.1f도' , y * 180 / pi, p1 * 180/pi )
     
@@ -64,8 +64,8 @@ for y=0 : pi/16 : pi
     % 방위각
     R_R_Y = [ cos(fRadarYaw) -sin(fRadarYaw) 0 ; sin(fRadarYaw) cos(fRadarYaw) 0 ; 0 0 1 ];
     
-    %Y = ( ( R_P * R_Y ) ) * X;
-    Y = ( R_F_P * R_F_Y * R_P_90 * R_Y * R_R_Y * R_R_P ) * X;
+    %Y = ( R_F_P * R_F_Y * R_P_90 * R_Y * R_R_Y * R_R_P ) * X;
+    Y = ( R_F_P * R_F_Y * R_Y * R_R_Y * R_R_P ) * X;
     Y1 = [ Y(1) ; Y(2) ; Y(3) ];
     fprintf( '\n단위 벡터 : [%.3f, %.3f, %.3f]' , Y1(1), Y1(2), Y1(3) )
     h = mArrow3([0 0 0],Y1*2, 'color', 'red', 'stemWidth', 0.01 );
@@ -91,7 +91,7 @@ for y=0 : pi/16 : pi
     fprintf( '\n변환 벡터2(방위각:%.3f도) : [%.3f, %.3f, %.3f]' , rad2deg(yaw), Y2(1), Y2(2), Y2(3) )
     %h = mArrow3([0 0 0], real(Y2), 'color', 'green', 'stemWidth', 0.01 );
    
-    %A(row,:) = [ rad2deg(y), rad2deg(p1), rad2deg(pr), rad2deg(yaw), rad2deg(pitch) ];
+    A(row,:) = [ rad2deg(y), rad2deg(pitch), rad2deg(pitch), rad2deg(yaw), rad2deg(pitch) ];
     row = row + 1;
 end    
 

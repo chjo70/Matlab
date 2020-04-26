@@ -3,24 +3,24 @@ function varargout = FlightRotation(varargin)
 %      UNTITLED, by itself, creates a new UNTITLED or raises the existing
 %      singleton*.
 %
-%      H = FlightRotation returns the handle to a new FlightRotation or the handle to
+%      H = UNTITLED returns the handle to a new UNTITLED or the handle to
 %      the existing singleton*.
 %
-%      FlightRotation('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in FlightRotation.M with the given input arguments.
+%      UNTITLED('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in UNTITLED.M with the given input arguments.
 %
-%      FlightRotation('Property','Value',...) creates a new FlightRotation or raises the
+%      UNTITLED('Property','Value',...) creates a new UNTITLED or raises the
 %      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before FlightRotation_OpeningFcn gets called.  An
+%      applied to the GUI before untitled_OpeningFcn gets called.  An
 %      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to FlightRotation_OpeningFcn via varargin.
+%      stop.  All inputs are passed to untitled_OpeningFcn via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help FlightRotation
+% Edit the above text to modify the response to help untitled
 
 % Last Modified by GUIDE v2.5 14-Apr-2020 09:50:34
 
@@ -28,8 +28,8 @@ function varargout = FlightRotation(varargin)
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @FlightRotation_OpeningFcn, ...
-                   'gui_OutputFcn',  @FlightRotation_OutputFcn, ...
+                   'gui_OpeningFcn', @untitled_OpeningFcn, ...
+                   'gui_OutputFcn',  @untitled_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -44,7 +44,7 @@ end
 % End initialization code - DO NOT EDIT
 
 % --- Executes just before untitled is made visible.
-function FlightRotation_OpeningFcn(hObject, eventdata, handles, varargin)
+function untitled_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -68,7 +68,7 @@ end
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = FlightRotation_OutputFcn(hObject, eventdata, handles)
+function varargout = untitled_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -222,7 +222,7 @@ fDeltaheight = str2num( strTemp );
 
 strTemp = get( handles.edit2, 'String' );
 fDistance = str2num( strTemp );
-fFlightPosPitch = -rad2deg( atan( fDeltaheight/ fDistance ) );
+fFlightPosPitch = rad2deg( -atan( fDeltaheight/ fDistance ) );
 set( handles.edit4, 'String', sprintf('%4.2f',fFlightPosPitch) );
 
 
@@ -235,7 +235,8 @@ fRadarPitch = str2num( strTemp );
 axes( handles.axes1 );
 cla;
 
-Rotation_Euler_Pitch( -30, fFlightPosPitch, fRadarYaw, fRadarPitch, false );
+Rotation_Euler_Pitch( 10, fFlightPosPitch, fRadarYaw, fRadarPitch, false );
+%Rotation_Euler_Pitch( -10, -1.5, -45.0, 0, true );
 
 
 function edit2_Callback(hObject, eventdata, handles)
